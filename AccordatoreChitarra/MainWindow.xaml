@@ -6,397 +6,374 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Accordatore Chitarra" 
-        Height="700" 
-        Width="900"
+        Height="900" 
+        Width="800"
         Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
-        TextElement.FontSize="14"
-        FontFamily="{DynamicResource MaterialDesignFont}"
-        WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize">
-    
+        TextElement.FontSize="13"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen">
+
     <Window.Resources>
-        <!-- Guitar Peg Style -->
+        <!-- Tuning Peg Style -->
         <Style x:Key="TuningPegStyle" TargetType="Border">
             <Setter Property="Width" Value="60"/>
             <Setter Property="Height" Value="80"/>
-            <Setter Property="Background" Value="#F5F5DC"/>
-            <Setter Property="BorderBrush" Value="#8B4513"/>
+            <Setter Property="Background" Value="#2C3E50"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Margin" Value="10,5"/>
+            <Setter Property="BorderBrush" Value="#34495E"/>
             <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="CornerRadius" Value="30"/>
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect Color="Black" Opacity="0.3" BlurRadius="8" ShadowDepth="3"/>
-                </Setter.Value>
-            </Setter>
+        </Style>
+
+        <!-- Tuning Peg Text Style -->
+        <Style x:Key="TuningPegTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#ECF0F1"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
         <!-- Active Peg Style -->
         <Style x:Key="ActivePegStyle" TargetType="Border" BasedOn="{StaticResource TuningPegStyle}">
-            <Setter Property="Background" Value="#FFD700"/>
-            <Setter Property="BorderBrush" Value="#FF8C00"/>
-            <Setter Property="BorderThickness" Value="3"/>
-        </Style>
-
-        <!-- Note Label Style -->
-        <Style x:Key="NoteLabelStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Foreground" Value="#8B4513"/>
-        </Style>
-
-        <!-- Frequency Label Style -->
-        <Style x:Key="FrequencyLabelStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="10"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Foreground" Value="#696969"/>
-            <Setter Property="Margin" Value="0,2,0,0"/>
+            <Setter Property="Background" Value="#27AE60"/>
+            <Setter Property="BorderBrush" Value="#2ECC71"/>
         </Style>
     </Window.Resources>
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="120"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="150"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Title -->
         <TextBlock Grid.Row="0" 
-                   Text="ACCORDATORE CHITARRA" 
-                   FontSize="32" 
+                   Text="Accordatore Chitarra"
+                   FontSize="32"
                    FontWeight="Bold"
                    HorizontalAlignment="Center"
-                   Foreground="{DynamicResource PrimaryHueMidBrush}"
-                   Margin="0,0,0,20"/>
+                   Margin="0,0,0,20"
+                   Foreground="{DynamicResource MaterialDesignBody}"/>
 
-        <!-- Guitar Headstock with Tuning Pegs -->
-        <Grid Grid.Row="1" Margin="0,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <!-- E String (6th - Low E) -->
-            <StackPanel Grid.Column="0" HorizontalAlignment="Center">
-                <Border x:Name="PegE" Style="{StaticResource TuningPegStyle}">
-                    <StackPanel>
-                        <TextBlock Text="E" Style="{StaticResource NoteLabelStyle}"/>
-                        <TextBlock Text="82.4 Hz" Style="{StaticResource FrequencyLabelStyle}"/>
-                    </StackPanel>
-                </Border>
-                <Ellipse Width="4" Height="30" Fill="#696969" Margin="0,5"/>
-            </StackPanel>
-
-            <!-- A String (5th) -->
-            <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                <Border x:Name="PegA" Style="{StaticResource TuningPegStyle}">
-                    <StackPanel>
-                        <TextBlock Text="A" Style="{StaticResource NoteLabelStyle}"/>
-                        <TextBlock Text="110 Hz" Style="{StaticResource FrequencyLabelStyle}"/>
-                    </StackPanel>
-                </Border>
-                <Ellipse Width="4" Height="30" Fill="#696969" Margin="0,5"/>
-            </StackPanel>
-
-            <!-- D String (4th) -->
-            <StackPanel Grid.Column="2" HorizontalAlignment="Center">
-                <Border x:Name="PegD" Style="{StaticResource TuningPegStyle}">
-                    <StackPanel>
-                        <TextBlock Text="D" Style="{StaticResource NoteLabelStyle}"/>
-                        <TextBlock Text="146.8 Hz" Style="{StaticResource FrequencyLabelStyle}"/>
-                    </StackPanel>
-                </Border>
-                <Ellipse Width="4" Height="30" Fill="#696969" Margin="0,5"/>
-            </StackPanel>
-
-            <!-- G String (3rd) -->
-            <StackPanel Grid.Column="3" HorizontalAlignment="Center">
-                <Border x:Name="PegG" Style="{StaticResource TuningPegStyle}">
-                    <StackPanel>
-                        <TextBlock Text="G" Style="{StaticResource NoteLabelStyle}"/>
-                        <TextBlock Text="196 Hz" Style="{StaticResource FrequencyLabelStyle}"/>
-                    </StackPanel>
-                </Border>
-                <Ellipse Width="4" Height="30" Fill="#696969" Margin="0,5"/>
-            </StackPanel>
-
-            <!-- B String (2nd) -->
-            <StackPanel Grid.Column="4" HorizontalAlignment="Center">
-                <Border x:Name="PegB" Style="{StaticResource TuningPegStyle}">
-                    <StackPanel>
-                        <TextBlock Text="B" Style="{StaticResource NoteLabelStyle}"/>
-                        <TextBlock Text="246.9 Hz" Style="{StaticResource FrequencyLabelStyle}"/>
-                    </StackPanel>
-                </Border>
-                <Ellipse Width="4" Height="30" Fill="#696969" Margin="0,5"/>
-            </StackPanel>
-
-            <!-- e String (1st - High E) -->
-            <StackPanel Grid.Column="5" HorizontalAlignment="Center">
-                <Border x:Name="PegHighE" Style="{StaticResource TuningPegStyle}">
-                    <StackPanel>
-                        <TextBlock Text="e" Style="{StaticResource NoteLabelStyle}"/>
-                        <TextBlock Text="329.6 Hz" Style="{StaticResource FrequencyLabelStyle}"/>
-                    </StackPanel>
-                </Border>
-                <Ellipse Width="4" Height="30" Fill="#696969" Margin="0,5"/>
-            </StackPanel>
-        </Grid>
-
-        <!-- Main Tuning Area -->
-        <Grid Grid.Row="2" Margin="0,20">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="80"/>
-            </Grid.ColumnDefinitions>
-
-            <!-- Tuning Indicator Section -->
-            <Border Grid.Column="0" 
-                    Background="White" 
-                    BorderBrush="{DynamicResource PrimaryHueMidBrush}"
-                    BorderThickness="2"
-                    CornerRadius="10"
-                    Margin="0,0,10,0">
+        <!-- Headstock Visualization with Tuning Pegs -->
+        <materialDesign:Card Grid.Row="1" 
+                            Padding="20"
+                            Margin="0,0,0,20"
+                            Background="{DynamicResource MaterialDesignCardBackground}">
+            <StackPanel>
+                <TextBlock Text="Corde"
+                          FontSize="18"
+                          FontWeight="SemiBold"
+                          HorizontalAlignment="Center"
+                          Margin="0,0,0,15"/>
+                
+                <!-- Tuning Pegs Grid -->
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                    <!-- Current Note Display -->
-                    <StackPanel Grid.Row="0" Margin="20,20,20,10" HorizontalAlignment="Center">
-                        <TextBlock Text="Nota Rilevata" 
-                                   FontSize="16" 
-                                   Foreground="#696969"
-                                   HorizontalAlignment="Center"/>
-                        <TextBlock x:Name="CurrentNoteText" 
-                                   Text="--" 
-                                   FontSize="48" 
-                                   FontWeight="Bold"
-                                   Foreground="{DynamicResource PrimaryHueMidBrush}"
-                                   HorizontalAlignment="Center"/>
-                        <TextBlock x:Name="CurrentFrequencyText" 
-                                   Text="0.0 Hz" 
-                                   FontSize="16" 
-                                   Foreground="#696969"
-                                   HorizontalAlignment="Center"/>
-                    </StackPanel>
+                    <!-- 6th String - E (Low E) -->
+                    <Border x:Name="PegE" Grid.Column="0" Style="{StaticResource TuningPegStyle}">
+                        <StackPanel>
+                            <TextBlock Text="E" Style="{StaticResource TuningPegTextStyle}"/>
+                            <TextBlock Text="82.41 Hz" FontSize="10" Foreground="#BDC3C7" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
 
-                    <!-- Tuning Indicator Bar -->
-                    <Grid Grid.Row="1" Margin="40,20">
-                        <!-- Background Bar -->
-                        <Border Background="#F0F0F0" 
-                                CornerRadius="10"
-                                Height="60">
-                            <Grid>
-                                <!-- Flat Zone (Left) -->
-                                <Rectangle Fill="#FFB6C1" 
-                                          HorizontalAlignment="Left" 
-                                          Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource WidthConverter}}"
-                                          RadiusX="10" RadiusY="10"
-                                          Opacity="0.3"/>
-                                
-                                <!-- Sharp Zone (Right) -->
-                                <Rectangle Fill="#ADD8E6" 
-                                          HorizontalAlignment="Right" 
-                                          Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource WidthConverter}}"
-                                          RadiusX="10" RadiusY="10"
-                                          Opacity="0.3"/>
-                                
-                                <!-- Center Line (In Tune) -->
-                                <Rectangle Fill="#32CD32" 
-                                          Width="6" 
-                                          HorizontalAlignment="Center"
-                                          Opacity="0.5"/>
-                                
-                                <!-- Tuning Indicator Needle -->
-                                <Canvas x:Name="TuningCanvas">
-                                    <Line x:Name="TuningNeedle"
-                                          X1="0" Y1="0"
-                                          X2="0" Y2="60"
-                                          Stroke="#FF4500"
-                                          StrokeThickness="4"
-                                          StrokeStartLineCap="Round"
-                                          StrokeEndLineCap="Round"/>
-                                </Canvas>
-                            </Grid>
-                        </Border>
+                    <!-- 5th String - A -->
+                    <Border x:Name="PegA" Grid.Column="1" Style="{StaticResource TuningPegStyle}">
+                        <StackPanel>
+                            <TextBlock Text="A" Style="{StaticResource TuningPegTextStyle}"/>
+                            <TextBlock Text="110.00 Hz" FontSize="10" Foreground="#BDC3C7" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
 
-                        <!-- Labels -->
-                        <Grid VerticalAlignment="Bottom" Margin="0,0,0,-30">
-                            <TextBlock Text="♭ CALANTE" 
-                                       HorizontalAlignment="Left" 
-                                       Foreground="#DC143C"
-                                       FontWeight="SemiBold"/>
-                            <TextBlock Text="ACCORDATO" 
-                                       HorizontalAlignment="Center" 
-                                       Foreground="#32CD32"
-                                       FontWeight="Bold"/>
-                            <TextBlock Text="CRESCENTE ♯" 
-                                       HorizontalAlignment="Right" 
-                                       Foreground="#1E90FF"
-                                       FontWeight="SemiBold"/>
-                        </Grid>
+                    <!-- 4th String - D -->
+                    <Border x:Name="PegD" Grid.Column="2" Style="{StaticResource TuningPegStyle}">
+                        <StackPanel>
+                            <TextBlock Text="D" Style="{StaticResource TuningPegTextStyle}"/>
+                            <TextBlock Text="146.83 Hz" FontSize="10" Foreground="#BDC3C7" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 3rd String - G -->
+                    <Border x:Name="PegG" Grid.Column="3" Style="{StaticResource TuningPegStyle}">
+                        <StackPanel>
+                            <TextBlock Text="G" Style="{StaticResource TuningPegTextStyle}"/>
+                            <TextBlock Text="196.00 Hz" FontSize="10" Foreground="#BDC3C7" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 2nd String - B -->
+                    <Border x:Name="PegB" Grid.Column="4" Style="{StaticResource TuningPegStyle}">
+                        <StackPanel>
+                            <TextBlock Text="B" Style="{StaticResource TuningPegTextStyle}"/>
+                            <TextBlock Text="246.94 Hz" FontSize="10" Foreground="#BDC3C7" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 1st String - e (High E) -->
+                    <Border x:Name="Pege" Grid.Column="5" Style="{StaticResource TuningPegStyle}">
+                        <StackPanel>
+                            <TextBlock Text="e" Style="{StaticResource TuningPegTextStyle}"/>
+                            <TextBlock Text="329.63 Hz" FontSize="10" Foreground="#BDC3C7" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </StackPanel>
+        </materialDesign:Card>
+
+        <!-- Frequency and Cents Display -->
+        <materialDesign:Card Grid.Row="2" 
+                            Padding="20"
+                            Margin="0,0,0,20"
+                            Background="{DynamicResource MaterialDesignCardBackground}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Frequency Display -->
+                <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                    <TextBlock Text="Frequenza"
+                              FontSize="14"
+                              Foreground="{DynamicResource MaterialDesignBodyLight}"
+                              HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="FrequencyDisplay"
+                              Text="-- Hz"
+                              FontSize="36"
+                              FontWeight="Bold"
+                              HorizontalAlignment="Center"
+                              Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                </StackPanel>
+
+                <!-- Cents Offset Display -->
+                <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                    <TextBlock Text="Centesimi"
+                              FontSize="14"
+                              Foreground="{DynamicResource MaterialDesignBodyLight}"
+                              HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="CentsDisplay"
+                              Text="0"
+                              FontSize="36"
+                              FontWeight="Bold"
+                              HorizontalAlignment="Center"
+                              Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>
+
+        <!-- Tuning Indicator Bar -->
+        <materialDesign:Card Grid.Row="3" 
+                            Padding="20"
+                            Margin="0,0,0,20"
+                            Background="{DynamicResource MaterialDesignCardBackground}">
+            <StackPanel>
+                <TextBlock Text="Indicatore di Accordatura"
+                          FontSize="16"
+                          FontWeight="SemiBold"
+                          HorizontalAlignment="Center"
+                          Margin="0,0,0,15"/>
+
+                <!-- Tuning Bar Container -->
+                <Grid Height="100" Margin="0,10">
+                    <!-- Background Bar -->
+                    <Border Background="#ECEFF1" 
+                           CornerRadius="10"
+                           Height="40"
+                           VerticalAlignment="Center"/>
+
+                    <!-- Color Zones -->
+                    <Grid Height="40" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" Background="#E74C3C" CornerRadius="10,0,0,10" Opacity="0.6"/>
+                        <Border Grid.Column="1" Background="#27AE60" Opacity="0.6"/>
+                        <Border Grid.Column="2" Background="#E74C3C" CornerRadius="0,10,10,0" Opacity="0.6"/>
                     </Grid>
 
-                    <!-- Cent Deviation Display -->
-                    <StackPanel Grid.Row="2" Margin="20,10,20,20" HorizontalAlignment="Center">
-                        <TextBlock x:Name="CentDeviationText" 
-                                   Text="0 cent" 
-                                   FontSize="20" 
-                                   FontWeight="SemiBold"
-                                   HorizontalAlignment="Center"
-                                   Foreground="#696969"/>
-                    </StackPanel>
+                    <!-- Center Line -->
+                    <Rectangle Width="4" 
+                              Fill="#2C3E50"
+                              HorizontalAlignment="Center"
+                              Height="60"/>
+
+                    <!-- Tuning Needle -->
+                    <Canvas x:Name="TuningCanvas" Height="100">
+                        <Path x:Name="TuningNeedle"
+                             Fill="#E67E22"
+                             Stroke="#D35400"
+                             StrokeThickness="2"
+                             Data="M 0,0 L 10,20 L -10,20 Z"
+                             RenderTransformOrigin="0.5,0">
+                            <Path.RenderTransform>
+                                <TranslateTransform x:Name="NeedleTransform" X="0" Y="40"/>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Canvas>
                 </Grid>
-            </Border>
 
-            <!-- Level Meter -->
-            <Border Grid.Column="1" 
-                    Background="White"
-                    BorderBrush="{DynamicResource PrimaryHueMidBrush}"
-                    BorderThickness="2"
-                    CornerRadius="10">
-                <Grid Margin="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+                <!-- Tuning Labels -->
+                <Grid Margin="0,10,0,0">
+                    <TextBlock Text="Troppo Bassa" 
+                              HorizontalAlignment="Left"
+                              FontSize="12"
+                              Foreground="#E74C3C"/>
+                    <TextBlock Text="Accordata" 
+                              HorizontalAlignment="Center"
+                              FontSize="12"
+                              FontWeight="Bold"
+                              Foreground="#27AE60"/>
+                    <TextBlock Text="Troppo Alta" 
+                              HorizontalAlignment="Right"
+                              FontSize="12"
+                              Foreground="#E74C3C"/>
+                </Grid>
 
-                    <TextBlock Grid.Row="0" 
-                               Text="LIVELLO" 
-                               FontSize="12" 
-                               FontWeight="Bold"
-                               HorizontalAlignment="Center"
-                               Foreground="#696969"
-                               Margin="0,0,0,10"/>
+                <!-- Vertical Level Meter -->
+                <Grid Margin="0,30,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                    <!-- Level Bar Container -->
-                    <Border Grid.Row="1" 
-                            Background="#F0F0F0" 
-                            CornerRadius="5"
-                            Padding="5">
+                    <TextBlock Grid.Column="0"
+                              Text="Livello:"
+                              VerticalAlignment="Center"
+                              Margin="0,0,15,0"
+                              FontSize="14"/>
+
+                    <Border Grid.Column="1" 
+                           Background="#ECEFF1"
+                           Height="30"
+                           CornerRadius="5">
                         <Grid>
-                            <!-- Level Bar -->
                             <Rectangle x:Name="LevelMeter"
-                                      Fill="#32CD32"
-                                      VerticalAlignment="Bottom"
-                                      Height="0"
-                                      RadiusX="3" RadiusY="3"/>
-                            
-                            <!-- Level Markers -->
-                            <StackPanel VerticalAlignment="Stretch">
-                                <Rectangle Height="1" Fill="#696969" Margin="0,0,0,20"/>
-                                <Rectangle Height="1" Fill="#696969" Margin="0,0,0,20"/>
-                                <Rectangle Height="1" Fill="#696969" Margin="0,0,0,20"/>
-                                <Rectangle Height="1" Fill="#696969" Margin="0,0,0,20"/>
-                                <Rectangle Height="1" Fill="#696969"/>
-                            </StackPanel>
+                                      Fill="{DynamicResource PrimaryHueMidBrush}"
+                                      HorizontalAlignment="Left"
+                                      Width="0"
+                                      CornerRadius="5"/>
                         </Grid>
                     </Border>
                 </Grid>
-            </Border>
-        </Grid>
+            </StackPanel>
+        </materialDesign:Card>
 
-        <!-- Control Panel -->
-        <materialDesign:Card Grid.Row="3" 
-                            Margin="0,20,0,0"
-                            Padding="20">
+        <!-- Microphone Selection -->
+        <materialDesign:Card Grid.Row="4" 
+                            Padding="20"
+                            Margin="0,0,0,15"
+                            Background="{DynamicResource MaterialDesignCardBackground}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <materialDesign:PackIcon Grid.Column="0"
+                                        Kind="Microphone"
+                                        Width="24"
+                                        Height="24"
+                                        VerticalAlignment="Center"
+                                        Margin="0,0,15,0"
+                                        Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+
+                <ComboBox x:Name="MicrophoneComboBox"
+                         Grid.Column="1"
+                         materialDesign:HintAssist.Hint="Seleziona Microfono"
+                         Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                         VerticalAlignment="Center">
+                    <ComboBoxItem Content="Microfono Predefinito"/>
+                    <ComboBoxItem Content="Microfono Interno"/>
+                    <ComboBoxItem Content="Microfono Esterno"/>
+                </ComboBox>
+            </Grid>
+        </materialDesign:Card>
+
+        <!-- Gain Slider -->
+        <materialDesign:Card Grid.Row="5" 
+                            Padding="20"
+                            Margin="0,0,0,15"
+                            Background="{DynamicResource MaterialDesignCardBackground}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="200"/>
-                </Grid.ColumnDefinitions>
 
-                <!-- Microphone Selection -->
-                <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,20,10">
-                    <TextBlock Text="Microfono" 
-                               FontWeight="SemiBold" 
-                               Margin="0,0,0,5"
-                               Foreground="{DynamicResource PrimaryHueMidBrush}"/>
-                    <ComboBox x:Name="MicrophoneComboBox"
-                              materialDesign:HintAssist.Hint="Seleziona dispositivo di input"
-                              Style="{StaticResource MaterialDesignOutlinedComboBox}"/>
-                </StackPanel>
+                <Grid Grid.Row="0" Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-                <!-- Start/Stop Button -->
-                <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
-                        x:Name="StartStopButton"
-                        Content="AVVIA"
-                        Height="60"
-                        FontSize="18"
-                        FontWeight="Bold"
-                        Style="{StaticResource MaterialDesignRaisedButton}"
-                        materialDesign:ButtonAssist.CornerRadius="10"
-                        VerticalAlignment="Center"
-                        Click="StartStopButton_Click"/>
+                    <materialDesign:PackIcon Grid.Column="0"
+                                            Kind="VolumeHigh"
+                                            Width="24"
+                                            Height="24"
+                                            VerticalAlignment="Center"
+                                            Margin="0,0,15,0"
+                                            Foreground="{DynamicResource PrimaryHueMidBrush}"/>
 
-                <!-- Gain Adjustment -->
-                <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,10,20,0">
-                    <Grid>
-                        <TextBlock Text="Guadagno Audio" 
-                                   FontWeight="SemiBold" 
-                                   Margin="0,0,0,5"
-                                   Foreground="{DynamicResource PrimaryHueMidBrush}"
-                                   HorizontalAlignment="Left"/>
-                        <TextBlock x:Name="GainValueText" 
-                                   Text="1.0x" 
-                                   FontWeight="SemiBold"
-                                   HorizontalAlignment="Right"
-                                   Foreground="#696969"/>
-                    </Grid>
-                    <Slider x:Name="GainSlider"
-                            Minimum="0.1"
-                            Maximum="5.0"
-                            Value="1.0"
-                            TickFrequency="0.1"
-                            IsSnapToTickEnabled="True"
-                            Style="{StaticResource MaterialDesignDiscreteSlider}"
-                            ValueChanged="GainSlider_ValueChanged"/>
-                </StackPanel>
+                    <TextBlock Grid.Column="1"
+                              Text="Guadagno"
+                              FontSize="14"
+                              VerticalAlignment="Center"/>
 
-                <!-- Status Bar -->
-                <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                        Background="#F5F5F5"
-                        CornerRadius="5"
-                        Padding="10"
-                        Margin="0,15,0,0">
-                    <Grid>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <materialDesign:PackIcon Kind="InformationOutline" 
-                                                    VerticalAlignment="Center"
-                                                    Margin="0,0,8,0"/>
-                            <TextBlock x:Name="StatusText" 
-                                       Text="Pronto. Premi AVVIA per iniziare l'accordatura."
-                                       VerticalAlignment="Center"
-                                       Foreground="#696969"/>
-                        </StackPanel>
-                        <ProgressBar x:Name="StatusProgressBar"
-                                    Style="{StaticResource MaterialDesignCircularProgressBar}"
-                                    Width="20"
-                                    Height="20"
-                                    HorizontalAlignment="Right"
-                                    IsIndeterminate="True"
-                                    Visibility="Collapsed"/>
-                    </Grid>
-                </Border>
+                    <TextBlock Grid.Column="2"
+                              x:Name="GainValueDisplay"
+                              Text="50%"
+                              FontSize="14"
+                              FontWeight="Bold"
+                              VerticalAlignment="Center"
+                              Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                </Grid>
+
+                <Slider x:Name="GainSlider"
+                       Grid.Row="1"
+                       Minimum="0"
+                       Maximum="100"
+                       Value="50"
+                       TickFrequency="10"
+                       TickPlacement="BottomRight"
+                       Style="{StaticResource MaterialDesignDiscreteSlider}"/>
             </Grid>
         </materialDesign:Card>
+
+        <!-- Start/Stop Button -->
+        <Button x:Name="StartStopButton"
+                Grid.Row="6"
+                Content="AVVIA"
+                Height="60"
+                FontSize="18"
+                FontWeight="Bold"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                materialDesign:ButtonAssist.CornerRadius="10"
+                Background="{DynamicResource PrimaryHueMidBrush}">
+            <Button.CommandParameter>
+                <materialDesign:PackIcon Kind="Play" Width="24" Height="24"/>
+            </Button.CommandParameter>
+        </Button>
     </Grid>
 </Window>
