@@ -28,6 +28,10 @@ namespace AccordatoreChitarra
         // UI state
         private bool _isRunning = false;
         
+        // Level meter scale factor (RMS to visual level)
+        // RMS values are typically 0-0.1 for normal audio, so multiply by 10 for better visualization
+        private const float LEVEL_METER_SCALE_FACTOR = 10.0f;
+        
         // Standard guitar tuning frequencies (Hz)
         private readonly Dictionary<string, float> _guitarTuning = new Dictionary<string, float>
         {
@@ -179,6 +183,7 @@ namespace AccordatoreChitarra
                 return;
             
             // Scale slider value (0-100) to gain (0-2)
+            // Slider at 50 = 1.0x gain (normal), 100 = 2.0x gain (double)
             float gain = (float)(e.NewValue / 50.0);
             _audioEngine.Gain = gain;
             
@@ -429,6 +434,7 @@ namespace AccordatoreChitarra
 
         /// <summary>
         /// Finds the closest guitar string based on frequency
+        /// Uses percentage-based threshold to account for varying semitone sizes
         /// </summary>
         private string FindClosestGuitarString(float frequency)
         {
@@ -439,8 +445,12 @@ namespace AccordatoreChitarra
             {
                 float difference = Math.Abs(frequency - tuning.Value);
                 
-                // Accept frequencies within 50 Hz of target (approximately 1 semitone)
-                if (difference < minDifference && difference < 50)
+                // Accept frequencies within 8% of target frequency
+                // This allows for roughly ±1.5 semitones while being frequency-proportional
+                // (e.g., ±6.6 Hz at 82 Hz, ±26.4 Hz at 330 Hz)
+                float threshold = tuning.Value * 0.08f;
+                
+                if (difference < minDifference && difference < threshold)
                 {
                     minDifference = difference;
                     closestPeg = tuning.Key;
@@ -502,7 +512,7 @@ namespace AccordatoreChitarra
         {
             // Scale RMS to level meter width (0-1 range to 0-100% width)
             // Apply logarithmic scaling for better visual representation
-            double level = Math.Min(1.0, rms * 10.0); // Scale factor
+            double level = Math.Min(1.0, rms * LEVEL_METER_SCALE_FACTOR);
             
             // Get the parent border width
             if (LevelMeter.Parent is Grid grid && grid.Parent is Border border)
