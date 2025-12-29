@@ -4,13 +4,20 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
     <AssemblyName>AccordatoreChitarra</AssemblyName>
     <RootNamespace>AccordatoreChitarra</RootNamespace>
+    <Authors>gcmele</Authors>
+    <Company>gcmele</Company>
+    <Product>Accordatore Chitarra</Product>
+    <Description>Accordatore professionale per chitarra con rilevamento preciso della frequenza</Description>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NAudio" Version="2.2.1" />
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+    <PackageReference Include="MaterialDesignColors" Version="2.1.4" />
+    <PackageReference Include="NAudio" Version="2.2.1" />
   </ItemGroup>
 
 </Project>
