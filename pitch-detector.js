@@ -69,17 +69,19 @@ class PitchDetector {
     autocorrelationPitchDetection(samples) {
         const minLag = Math.floor(this.sampleRate / this.maxFrequency);
         const maxLag = Math.floor(this.sampleRate / this.minFrequency);
-        const bufferSize = Math.min(samples.length, maxLag * 2);
+        const bufferSize = Math.min(samples.length, maxLag * 3);
 
-        // Calculate autocorrelation
+        // Calculate autocorrelation with normalization
         const autocorrelation = new Float32Array(maxLag + 1);
 
         for (let lag = minLag; lag <= maxLag; lag++) {
             let sum = 0;
-            for (let i = 0; i < bufferSize - lag; i++) {
+            let count = bufferSize - lag;
+            for (let i = 0; i < count; i++) {
                 sum += samples[i] * samples[i + lag];
             }
-            autocorrelation[lag] = sum;
+            // Normalize by the number of samples
+            autocorrelation[lag] = count > 0 ? sum / count : 0;
         }
 
         // Find the first peak (highest autocorrelation value after minimum lag)
