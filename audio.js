@@ -39,8 +39,12 @@ class AudioCapture {
             // Create source node from media stream
             this.sourceNode = this.audioContext.createMediaStreamSource(this.mediaStream);
 
-            // Use ScriptProcessorNode for compatibility with iOS Safari
-            // AudioWorklet is not supported on older iOS versions
+            // Use ScriptProcessorNode for maximum compatibility with iOS Safari
+            // AudioWorklet is preferred but not supported on older iOS versions (< iOS 14.5)
+            // and some other mobile browsers. For guitar tuning, ScriptProcessorNode
+            // provides sufficient performance and wider compatibility.
+            // ScriptProcessorNode is deprecated but still widely supported and will be
+            // maintained for backward compatibility.
             this.processorNode = this.audioContext.createScriptProcessor(
                 this.bufferSize,
                 1, // mono input
