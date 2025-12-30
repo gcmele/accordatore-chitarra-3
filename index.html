@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>🎸 Accordatore Chitarra</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎸 Accordatore Chitarra</h1>
+            <p class="subtitle">Accordatore professionale per chitarra</p>
+        </header>
+
+        <main>
+            <!-- Note Display -->
+            <div class="note-display">
+                <div class="detected-note" id="detectedNote">--</div>
+                <div class="frequency" id="frequency">--- Hz</div>
+            </div>
+
+            <!-- Tuning Indicator -->
+            <div class="tuning-indicator-container">
+                <div class="tuning-scale">
+                    <span class="scale-mark left">-50</span>
+                    <span class="scale-mark center">0</span>
+                    <span class="scale-mark right">+50</span>
+                </div>
+                <div class="tuning-bar">
+                    <div class="tuning-needle" id="tuningNeedle"></div>
+                </div>
+                <div class="cents-display" id="centsDisplay">0 cents</div>
+            </div>
+
+            <!-- Guitar Strings Reference -->
+            <div class="guitar-strings">
+                <h3>Accordatura Standard</h3>
+                <div class="strings-container">
+                    <div class="string-item" data-note="E2">
+                        <span class="string-number">6</span>
+                        <span class="string-note">E (82 Hz)</span>
+                    </div>
+                    <div class="string-item" data-note="A2">
+                        <span class="string-number">5</span>
+                        <span class="string-note">A (110 Hz)</span>
+                    </div>
+                    <div class="string-item" data-note="D3">
+                        <span class="string-number">4</span>
+                        <span class="string-note">D (147 Hz)</span>
+                    </div>
+                    <div class="string-item" data-note="G3">
+                        <span class="string-number">3</span>
+                        <span class="string-note">G (196 Hz)</span>
+                    </div>
+                    <div class="string-item" data-note="B3">
+                        <span class="string-number">2</span>
+                        <span class="string-note">B (247 Hz)</span>
+                    </div>
+                    <div class="string-item" data-note="E4">
+                        <span class="string-number">1</span>
+                        <span class="string-note">e (330 Hz)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls">
+                <button id="startButton" class="btn btn-primary">
+                    <span class="btn-icon">▶</span>
+                    <span class="btn-text">AVVIA</span>
+                </button>
+            </div>
+
+            <!-- Status Messages -->
+            <div class="status" id="status">
+                <p>Premi AVVIA per iniziare l'accordatura</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>
+                <small>Accordatore professionale con algoritmo di autocorrelazione</small><br>
+                <small>Compatibile con iPhone Safari, Chrome, Firefox, Edge</small>
+            </p>
+        </footer>
+    </div>
+
+    <script src="pitch-detector.js"></script>
+    <script src="audio.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
